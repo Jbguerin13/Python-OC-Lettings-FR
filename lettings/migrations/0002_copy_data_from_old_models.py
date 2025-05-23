@@ -6,7 +6,6 @@ def copy_lettings_and_addresses(apps, schema_editor):
     NewAddress = apps.get_model('lettings', 'Address')
     NewLetting = apps.get_model('lettings', 'Letting')
 
-    # Copier les adresses
     old_to_new_address = {}
     for old_addr in OldAddress.objects.all():
         new_addr = NewAddress.objects.create(
