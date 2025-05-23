@@ -30,7 +30,7 @@ class Letting(models.Model):
     """
     Model representing a property letting.
     
-    This model stores title and associated address.
+    This model stores title and associated addresses.
     """
     title = models.CharField(max_length=256)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
