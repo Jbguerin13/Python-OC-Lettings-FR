@@ -5,7 +5,6 @@ from django.core.validators import MaxValueValidator, MinLengthValidator
 class Address(models.Model):
     """
     Model representing a physical address.
-    
     This model stores :
     number, street, city, state, zip code, and country code.
     """
@@ -19,7 +18,6 @@ class Address(models.Model):
     def __str__(self):
         """
         Returns a string representation of the address.
-        
         Returns:
             str: The address in the format 'number street'
         """
@@ -29,7 +27,6 @@ class Address(models.Model):
 class Letting(models.Model):
     """
     Model representing a property letting.
-    
     This model stores title and associated addresses.
     """
     title = models.CharField(max_length=256)
