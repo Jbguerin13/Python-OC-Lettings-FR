@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     """
     Model representing a user profile.
-    
     This model extends the default Django User model with additional information
     about the user's favorite city.
     """
@@ -15,7 +14,6 @@ class Profile(models.Model):
     def __str__(self):
         """
         Returns the username of the associated user.
-        
         Returns:
             str: The username of the user
         """
