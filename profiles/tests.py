@@ -21,10 +21,10 @@ class ProfilesViewsTest(TestCase):
 
     def test_index_view(self):
         """Test the profiles list view."""
-        
+
         url = reverse('profiles:index')
         response = self.client.get(url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/index.html')
         self.assertIn('profiles_list', response.context)
@@ -33,17 +33,17 @@ class ProfilesViewsTest(TestCase):
 
     def test_profile_view(self):
         """Test the profile detail view."""
-        
+
         url = reverse('profiles:profile', args=[self.user.username])
         response = self.client.get(url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/profile.html')
         self.assertEqual(response.context['profile'], self.profile)
 
     def test_profile_view_404(self):
         """Test the profile detail view with non-existent username."""
-        
+
         url = reverse('profiles:profile', args=['nonexistentuser'])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)

@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.http import Http404
 
 
 class OCLettingsSiteViewsTest(TestCase):
@@ -12,14 +11,14 @@ class OCLettingsSiteViewsTest(TestCase):
         """Test the index view."""
         url = reverse('index')
         response = self.client.get(url)
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
     def test_404_view(self):
         """Test the 404 error view."""
         url = reverse('test_404')
-        
+
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -28,6 +27,7 @@ class OCLettingsSiteViewsTest(TestCase):
         url = reverse('test_500')
         with self.assertRaises(ZeroDivisionError):
             self.client.get(url)
+
 
 def test_dummy():
     assert 1

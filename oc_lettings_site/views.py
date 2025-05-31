@@ -32,5 +32,5 @@ def test_500(request):
     Returns:
         This function never returns as it raises a ZeroDivisionError
     """
-    division_by_zero = 1 / 0
+    1 / 0  # Raise ZeroDivisionError
     return render(request, 'index.html')
