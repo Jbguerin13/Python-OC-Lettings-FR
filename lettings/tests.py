@@ -24,7 +24,6 @@ class LettingViewsTest(TestCase):
         """Test the index view."""
         url = reverse('lettings:index')
         response = self.client.get(url)
-        
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'lettings/index.html')
         self.assertIn('lettings_list', response.context)
@@ -33,10 +32,8 @@ class LettingViewsTest(TestCase):
 
     def test_letting_view(self):
         """Test the letting detail view."""
-        
         url = reverse('lettings:letting', args=[self.letting.id])
         response = self.client.get(url)
-        
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'lettings/letting.html')
         self.assertEqual(response.context['title'], self.letting.title)
@@ -44,8 +41,6 @@ class LettingViewsTest(TestCase):
 
     def test_letting_view_404(self):
         """Test the letting detail view with non-existent letting."""
-        
         url = reverse('lettings:letting', args=[999])
         response = self.client.get(url)
-        
         self.assertEqual(response.status_code, 404)
