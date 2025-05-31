@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
+import logging
 
+logger = logging.getLogger(__name__)
 
 def index(request):
     """
@@ -10,8 +12,12 @@ def index(request):
     Returns:
         Rendered template 'index.html'
     """
-    return render(request, 'index.html')
-
+    try:
+        logger.info("Rendering home page")
+        return render(request, 'index.html')
+    except Exception as e:
+        logger.error(f"Error rendering home page: {str(e)}", exc_info=True)
+        raise
 
 def test_404(request):
     """
@@ -21,6 +27,7 @@ def test_404(request):
     Raises:
         Http404: Always raises a 404 error for testing purposes
     """
+    logger.warning("Test 404 error page requested")
     raise Http404("Page de test 404")
 
 
@@ -32,5 +39,6 @@ def test_500(request):
     Returns:
         This function never returns as it raises a ZeroDivisionError
     """
+    logger.error("Test 500 error page requested")
     1 / 0  # Raise ZeroDivisionError
     return render(request, 'index.html')
