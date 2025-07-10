@@ -12,7 +12,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # Allowed hosts for production
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+#ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,0.0.0.0,127.0.0.1,*').split(',')
+ALLOWED_HOSTS = ['0.0.0.0']
 
 # Add WhiteNoise to serve static files
 INSTALLED_APPS = INSTALLED_APPS + ['whitenoise.runserver_nostatic']
