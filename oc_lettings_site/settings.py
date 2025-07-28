@@ -6,7 +6,7 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 import logging
 
 sentry_sdk.init(
-    dsn = "https://7220363d53b6d31ec048180b5b0074e9@o452613.ingest.us.sentry.io/4509418921263104",
+    dsn = os.getenv('SENTRY_DSN'),
     integrations=[
         DjangoIntegration(),
         LoggingIntegration(
@@ -60,7 +60,7 @@ LOGGING = {
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
