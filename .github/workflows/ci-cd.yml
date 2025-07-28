@@ -5,10 +5,10 @@ name: CI/CD Pipeline
 on:
   # Se déclenche à chaque push sur la branche main
   push:
-    branches: [ main ]
+    branches: [ master ]
   # Se déclenche à chaque pull request vers la branche main
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 # Variables d'environnement globales
 env:
