@@ -115,10 +115,13 @@ jobs:
     # S'exécute uniquement sur les pushes vers master
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     steps:
-    # Déploiement sur Render
+    # Déploiement sur Render via webhook
     - name: Deploy to Render
-      uses: render-actions/deploy@v1
-      with:
-        render-token: ${{ secrets.RENDER_TOKEN }}
-        service-id: ${{ secrets.RENDER_SERVICE_ID }}
-        environment: production 
+      run: |
+        if [ -n "${{ secrets.RENDER_WEBHOOK_URL }}" ]; then
+          echo "Triggering Render deployment via webhook..."
+          curl -X POST "${{ secrets.RENDER_WEBHOOK_URL }}"
+          echo "Deployment triggered successfully!"
+        else
+          echo "No RENDER_WEBHOOK_URL secret found. Skipping deployment."
+        fi 
