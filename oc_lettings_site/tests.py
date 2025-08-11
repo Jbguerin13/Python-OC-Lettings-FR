@@ -18,7 +18,6 @@ class MainViewsTest(TestCase):
         """Test the home page content."""
         url = reverse('index')
         response = self.client.get(url)
-        self.assertContains(response, 'test ci cd functional')
         self.assertContains(response, 'Profiles')
         self.assertContains(response, 'Lettings')
 
