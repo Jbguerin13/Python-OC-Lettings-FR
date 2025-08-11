@@ -11,8 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # Allowed hosts for production
-#ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,0.0.0.0,127.0.0.1,*').split(',')
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,0.0.0.0,127.0.0.1,python-oc-lettings-fr-bczo.onrender.com').split(',')
 
 # Add WhiteNoise to serve static files
 INSTALLED_APPS = INSTALLED_APPS + ['whitenoise.runserver_nostatic']
