@@ -53,6 +53,8 @@ jobs:
         
     # Exécution des tests avec mesure de la couverture
     - name: Run tests with coverage
+      env:
+        DJANGO_SETTINGS_MODULE: oc_lettings_site.settings_test
       run: |
         python manage.py test profiles.tests lettings.tests --verbosity=2
         coverage run --source='.' manage.py test profiles.tests lettings.tests
