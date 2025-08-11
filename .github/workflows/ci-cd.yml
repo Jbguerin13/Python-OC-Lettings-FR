@@ -106,9 +106,6 @@ jobs:
         push: true
         # Tag l'image avec le SHA du commit et 'latest'
         tags: ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }},${{ env.DOCKER_IMAGE }}:latest
-        # Cache pour optimiser les builds
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
 
   # Job de déploiement : déploie l'application sur Render
   deploy:
