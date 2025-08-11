@@ -54,7 +54,9 @@ jobs:
     # Exécution des tests avec mesure de la couverture
     - name: Run tests with coverage
       run: |
-        pytest --cov=. --cov-report=xml
+        python manage.py test profiles.tests lettings.tests --verbosity=2
+        coverage run --source='.' manage.py test profiles.tests lettings.tests
+        coverage xml
         
     # Vérification que la couverture de tests est supérieure à 80%
     - name: Check coverage threshold
