@@ -59,14 +59,18 @@ jobs:
         python manage.py test profiles.tests lettings.tests --verbosity=2
         coverage run --source='.' manage.py test profiles.tests lettings.tests
         coverage xml
+        coverage report
         
-    # Vérification que la couverture de tests est supérieure à 80%
+    # Vérification simple de la couverture
     - name: Check coverage threshold
       run: |
-        coverage=$(python -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.xml'); root = tree.getroot(); print(float(root.attrib['line-rate']) * 100)")
+        coverage=$(coverage report | grep TOTAL | awk '{print $4}' | sed 's/%//')
+        echo "Coverage: $coverage%"
         if (( $(echo "$coverage < 80" | bc -l) )); then
-          echo "Coverage is below 80%"
+          echo "❌ Coverage is below 80% (current: $coverage%)"
           exit 1
+        else
+          echo "✅ Coverage is above 80% (current: $coverage%)"
         fi
 
   # Job de test Docker : vérifie que l'image Docker fonctionne
