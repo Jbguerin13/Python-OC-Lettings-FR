@@ -47,3 +47,31 @@ class ProfilesViewsTest(TestCase):
         url = reverse('profiles:profile', args=['nonexistentuser'])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+
+class ProfileModelTest(TestCase):
+    def setUp(self):
+        """Set up test data."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@example.com',
+            password='testpass123'
+        )
+        self.profile = Profile.objects.create(
+            user=self.user,
+            favorite_city='Test City'
+        )
+
+    def test_profile_str(self):
+        """Test the string representation of Profile."""
+        self.assertEqual(str(self.profile), 'testuser')
+
+    def test_profile_creation(self):
+        """Test profile creation."""
+        self.assertEqual(self.profile.user.username, 'testuser')
+        self.assertEqual(self.profile.favorite_city, 'Test City')
+
+    def test_profile_user_relationship(self):
+        """Test the relationship between Profile and User."""
+        self.assertEqual(self.profile.user, self.user)
+        self.assertEqual(self.user.profile, self.profile)

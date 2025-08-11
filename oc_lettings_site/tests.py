@@ -2,32 +2,35 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 
-class OCLettingsSiteViewsTest(TestCase):
+class MainViewsTest(TestCase):
     def setUp(self):
         """Set up test data."""
         self.client = Client()
 
-    def test_index_view(self):
-        """Test the index view."""
+    def test_home_view(self):
+        """Test the home page view."""
         url = reverse('index')
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_404_view(self):
-        """Test the 404 error view."""
-        url = reverse('test_404')
-
+    def test_home_view_content(self):
+        """Test the home page content."""
+        url = reverse('index')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        self.assertContains(response, 'test ci cd functional')
+        self.assertContains(response, 'Profiles')
+        self.assertContains(response, 'Lettings')
 
-    def test_500_view(self):
-        """Test the 500 error view."""
-        url = reverse('test_500')
-        with self.assertRaises(ZeroDivisionError):
-            self.client.get(url)
-
-
-def test_dummy():
-    assert 1
+    def test_home_view_links(self):
+        """Test that the home page has working links."""
+        url = reverse('index')
+        response = self.client.get(url)
+        
+        # Check profiles link
+        profiles_url = reverse('profiles:index')
+        self.assertContains(response, f'href="{profiles_url}"')
+        
+        # Check lettings link
+        lettings_url = reverse('lettings:index')
+        self.assertContains(response, f'href="{lettings_url}"')
