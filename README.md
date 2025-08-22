@@ -1,24 +1,12 @@
 ## Résumé
 
-Site web d'Orange County Lettings
+Projet 13 - Refactor Site web d'Orange County Lettings - Architecture modulaire
 
-## Développement local
 
-### Prérequis
-
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
-- SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
-
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
-
-### macOS / Linux
-
-#### Cloner le repository
+## Cloner le repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- `git clone https://github.com/Jbguerin13/Python-OC-Lettings-FR.git`
 
 #### Créer l'environnement virtuel
 
@@ -45,13 +33,29 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
-- `flake8`
+- `make test` (or manually: `python manage.py test lettings oc_lettings_site profiles`)
 
 #### Tests unitaires
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
-- `pytest`
+- `make test` (or manually: `python manage.py test lettings oc_lettings_site profiles`)
+
+#### Tests avec couverture
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source venv/bin/activate`
+- `make test-coverage` (or manually: `coverage run --source='.' manage.py test lettings oc_lettings_site profiles && coverage report`)
+
+#### Nettoyage
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `make clean` (removes __pycache__, .pyc files, coverage files, etc.)
+
+#### Tests avec nettoyage des migrations
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `make test-clean` (removes specific migration file and runs tests)
 
 #### Base de données
 
