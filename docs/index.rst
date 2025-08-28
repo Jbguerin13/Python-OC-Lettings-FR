@@ -8,6 +8,7 @@ Bienvenue dans la documentation du projet OC Lettings Site.
    :caption: Contenu:
 
    modules
+   database_schema
 
 Indices et tables
 ==================
