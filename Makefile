@@ -1,4 +1,4 @@
-.PHONY: test coverage clean run test-clean
+.PHONY: test coverage clean run test-clean docs docs-live
 
 PYTHON = python
 COVERAGE = coverage
@@ -29,5 +29,12 @@ clean:
 	find . -type d -name "htmlcov" -exec rm -r {} +
 	find . -type d -name ".pytest_cache" -exec rm -r {} +
 	find . -type d -name ".coverage" -exec rm -r {} +
+
+# Documentation
+docs:
+	cd docs && make html
+
+docs-live:
+	cd docs && make livehtml
 
 all: test-clean 
